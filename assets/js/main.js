@@ -160,6 +160,10 @@ function setupEventListeners() {
 
 // GitHub Pages 경로 처리
 function getBasePath() {
+    // cbtnara.com 도메인인 경우
+    if (window.location.hostname === 'cbtnara.com' || window.location.hostname === 'www.cbtnara.com') {
+        return '/';
+    }
     // GitHub Pages인 경우 (hyunkang07.github.io 도메인)
     if (window.location.hostname === 'hyunkang07.github.io') {
         return '/certexamhub/';

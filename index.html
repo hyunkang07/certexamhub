@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자격증 시험 자료 모음</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>자격증 시험 자료 모음</h1>
+            <p class="subtitle">전산회계 및 기타 자격증 시험 자료를 한눈에 확인하세요</p>
+        </header>
+
+        <div class="filter-section">
+            <div class="filter-group">
+                <label for="categoryFilter">자격증 분류:</label>
+                <select id="categoryFilter">
+                    <option value="all">전체</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="examFilter">시험 회차:</label>
+                <select id="examFilter">
+                    <option value="all">전체</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="typeFilter">파일 유형:</label>
+                <select id="typeFilter">
+                    <option value="all">전체</option>
+                    <option value="pdf">PDF</option>
+                    <option value="zip">ZIP</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sortFilter">정렬 순서:</label>
+                <select id="sortFilter">
+                    <option value="newest">최신순</option>
+                    <option value="oldest">오래된순</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="contentArea">
+            <!-- 동적으로 생성될 내용 -->
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

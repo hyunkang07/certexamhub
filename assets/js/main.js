@@ -1,110 +1,30 @@
-// 파일 데이터 구조
-const fileData = {
-    "전산회계": {
-        "전산회계2급": [
-            {
-                exam: "제111회",
-                files: [
-                    { name: "제111회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제111회-전산회계2급-A형.pdf" },
-                    { name: "제111회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제111회-전산회계2급-B형.pdf" },
-                    { name: "제111회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제111회-전산회계2급-확정답안.pdf" },
-                    { name: "제111회-전산세무회계-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/제111회-전산세무회계-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제112회",
-                files: [
-                    { name: "제112회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제112회-전산회계2급-A형.pdf" },
-                    { name: "제112회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제112회-전산회계2급-B형.pdf" },
-                    { name: "제112회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제112회-전산회계2급-확정답안.pdf" },
-                    { name: "제112회-전산세무회계-수험용데이터-1.zip", type: "zip", path: "전산회계/전산회계2급/제112회-전산세무회계-수험용데이터-1.zip" }
-                ]
-            },
-            {
-                exam: "제114회",
-                files: [
-                    { name: "제114회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제114회-전산회계2급-A형.pdf" },
-                    { name: "제114회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제114회-전산회계2급-B형.pdf" },
-                    { name: "제114회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제114회-전산회계2급-확정답안.pdf" },
-                    { name: "제114회-전산세무회계-수험용데이터-1.zip", type: "zip", path: "전산회계/전산회계2급/제114회-전산세무회계-수험용데이터-1.zip" }
-                ]
-            },
-            {
-                exam: "제115회",
-                files: [
-                    { name: "제115회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제115회-전산회계2급-A형.pdf" },
-                    { name: "제115회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제115회-전산회계2급-B형.pdf" },
-                    { name: "제115회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제115회-전산회계2급-확정답안.pdf" },
-                    { name: "제115회-전산세무회계-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/제115회-전산세무회계-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제116회",
-                files: [
-                    { name: "제116회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제116회-전산회계2급-A형.pdf" },
-                    { name: "제116회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제116회-전산회계2급-B형.pdf" },
-                    { name: "제116회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제116회-전산회계2급-확정답안.pdf" },
-                    { name: "제116회-전산세무회계-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/제116회-전산세무회계-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제117회",
-                files: [
-                    { name: "제117회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제117회-전산회계2급-A형.pdf" },
-                    { name: "제117회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제117회-전산회계2급-B형.pdf" },
-                    { name: "제117회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제117회-전산회계2급-확정답안.pdf" },
-                    { name: "제117회-전산세무회계-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/제117회-전산세무회계-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제118회",
-                files: [
-                    { name: "제118회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제118회-전산회계2급-A형.pdf" },
-                    { name: "제118회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제118회-전산회계2급-B형.pdf" },
-                    { name: "제118회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제118회-전산회계2급-확정답안.pdf" },
-                    { name: "제118회-전산세무회계-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/제118회-전산세무회계-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제119회",
-                files: [
-                    { name: "제119회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제119회-전산회계2급-A형.pdf" },
-                    { name: "제119회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제119회-전산회계2급-B형.pdf" },
-                    { name: "제119회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제119회-전산회계2급-확정답안.pdf" },
-                    { name: "제119회-전산세무회계-수험용데이터-3.zip", type: "zip", path: "전산회계/전산회계2급/제119회-전산세무회계-수험용데이터-3.zip" }
-                ]
-            },
-            {
-                exam: "제120회",
-                files: [
-                    { name: "제120회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제120회-전산회계2급-A형.pdf" },
-                    { name: "제120회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제120회-전산회계2급-B형.pdf" },
-                    { name: "제120회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제120회-전산회계2급-확정답안.pdf" },
-                    { name: "제120회-전산회계2급.zip", type: "zip", path: "전산회계/전산회계2급/제120회-전산회계2급.zip" },
-                    { name: "2025년-6월-수험용데이터.zip", type: "zip", path: "전산회계/전산회계2급/2025년-6월-수험용데이터.zip" }
-                ]
-            },
-            {
-                exam: "제121회",
-                files: [
-                    { name: "제121회-전산회계2급-A형.pdf", type: "pdf", path: "전산회계/전산회계2급/제121회-전산회계2급-A형.pdf" },
-                    { name: "제121회-전산회계2급-B형.pdf", type: "pdf", path: "전산회계/전산회계2급/제121회-전산회계2급-B형.pdf" },
-                    { name: "제121회-전산회계2급-확정답안.pdf", type: "pdf", path: "전산회계/전산회계2급/제121회-전산회계2급-확정답안.pdf" },
-                    { name: "제121회-전산세무회계-수험용데이터-3.zip", type: "zip", path: "전산회계/전산회계2급/제121회-전산세무회계-수험용데이터-3.zip" }
-                ]
-            },
-            {
-                exam: "제122회",
-                files: [
-                    { name: "제122회-전산회계2급-A형-1.pdf", type: "pdf", path: "전산회계/전산회계2급/제122회-전산회계2급-A형-1.pdf" },
-                    { name: "제122회-전산회계2급-B형-1.pdf", type: "pdf", path: "전산회계/전산회계2급/제122회-전산회계2급-B형-1.pdf" },
-                    { name: "제122회-전산회계2급-확정답안-1.pdf", type: "pdf", path: "전산회계/전산회계2급/제122회-전산회계2급-확정답안-1.pdf" },
-                    { name: "제122회-2025년-10월-수험용데이터-1.zip", type: "zip", path: "전산회계/전산회계2급/제122회-2025년-10월-수험용데이터-1.zip" }
-                ]
-            }
-        ]
+// 파일 데이터 (JSON에서 로드)
+let fileData = {};
+
+// JSON 데이터 로드
+async function loadData() {
+    try {
+        const basePath = getBasePath();
+        const dataUrl = basePath + 'api/data.json';
+        const response = await fetch(dataUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        fileData = await response.json();
+        return fileData;
+    } catch (error) {
+        console.error('데이터 로드 실패:', error);
+        contentArea.innerHTML = `
+            <div class="empty-message">
+                <p>데이터를 불러오는 중 오류가 발생했습니다.</p>
+                <p style="font-size: 0.9em; margin-top: 10px; color: #999;">${error.message}</p>
+            </div>
+        `;
+        return null;
     }
-};
+}
 
 // 필터 관련 변수
 let currentCategoryFilter = 'all';
@@ -120,10 +40,18 @@ const typeFilter = document.getElementById('typeFilter');
 const sortFilter = document.getElementById('sortFilter');
 
 // 초기화
-document.addEventListener('DOMContentLoaded', () => {
-    initializeFilters();
-    renderContent();
-    setupEventListeners();
+document.addEventListener('DOMContentLoaded', async () => {
+    // 로딩 메시지 표시
+    contentArea.innerHTML = '<div class="empty-message">데이터를 불러오는 중...</div>';
+    
+    // 데이터 로드
+    const data = await loadData();
+    
+    if (data) {
+        initializeFilters();
+        renderContent();
+        setupEventListeners();
+    }
 });
 
 // 필터 초기화

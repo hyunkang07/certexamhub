@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 사용 예제</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #667eea;
+        }
+        h2 {
+            color: #495057;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+        }
+        .result {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 4px solid #4caf50;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .file-list li:hover {
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📡 certexamhub API 사용 예제</h1>
+        <p>이 페이지는 외부에서 certexamhub API를 사용하는 방법을 보여줍니다.</p>
+        
+        <h2>1. API 엔드포인트</h2>
+        <pre><code>https://hyunkang07.github.io/certexamhub/api/data.json</code></pre>
+        
+        <h2>2. JavaScript로 데이터 가져오기</h2>
+        <button onclick="loadDataWithFetch()">Fetch API로 로드</button>
+        <button onclick="loadDataWithAxios()">Axios로 로드 (CDN)</button>
+        <div id="result1" class="result" style="display:none;"></div>
+        
+        <h2>3. 특정 자격증만 필터링</h2>
+        <button onclick="filterByCategory('전산회계2급')">전산회계2급만 보기</button>
+        <button onclick="filterByCategory('전산세무1급')">전산세무1급만 보기</button>
+        <div id="result2" class="result" style="display:none;"></div>
+        
+        <h2>4. 특정 회차만 가져오기</h2>
+        <button onclick="getSpecificExam('제122회')">제122회 자료만 보기</button>
+        <div id="result3" class="result" style="display:none;"></div>
+        
+        <h2>5. 파일 목록만 추출</h2>
+        <button onclick="extractAllFiles()">모든 파일 목록 추출</button>
+        <div id="result4" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        const API_URL = 'https://hyunkang07.github.io/certexamhub/api/data.json';
+        const BASE_URL = 'https://hyunkang07.github.io/certexamhub/';
+
+        // 1. Fetch API로 데이터 로드
+        async function loadDataWithFetch() {
+            const resultDiv = document.getElementById('result1');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '로딩 중...';
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                let html = '<h3>✅ 데이터 로드 성공!</h3>';
+                html += '<p><strong>자격증 종류:</strong></p><ul class="file-list">';
+                Object.keys(data).forEach(category => {
+                    html += `<li>${category}</li>`;
+                });
+                html += '</ul>';
+                html += '<pre><code>' + JSON.stringify(data, null, 2).substring(0, 500) + '...\n(전체 데이터는 콘솔에서 확인하세요)</code></pre>';
+                html += '<p>💡 브라우저 콘솔(F12)에서 전체 데이터를 확인할 수 있습니다.</p>';
+                
+                resultDiv.innerHTML = html;
+                console.log('전체 데이터:', data);
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">❌ 오류 발생: ${error.message}</p>`;
+            }
+        }
+
+        // 2. Axios로 데이터 로드 (CDN 필요)
+        async function loadDataWithAxios() {
+            const resultDiv = document.getElementById('result1');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = 'Axios를 사용하려면 CDN을 추가해야 합니다.<br>';
+            resultDiv.innerHTML += '<pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"&gt;&lt;/script&gt;</code></pre>';
+            resultDiv.innerHTML += '<p>Axios를 추가한 후 다시 시도하세요.</p>';
+        }
+
+        // 3. 특정 자격증만 필터링
+        async function filterByCategory(categoryName) {
+            const resultDiv = document.getElementById('result2');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '로딩 중...';
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data[categoryName]) {
+                    const categoryData = data[categoryName];
+                    let html = `<h3>📋 ${categoryName} 자료</h3>`;
+                    html += '<p><strong>시험 회차:</strong></p><ul class="file-list">';
+                    
+                    Object.values(categoryData).forEach(subCategory => {
+                        subCategory.forEach(exam => {
+                            html += `<li><strong>${exam.exam}</strong> - ${exam.files.length}개 파일</li>`;
+                        });
+                    });
+                    html += '</ul>';
+                    resultDiv.innerHTML = html;
+                } else {
+                    resultDiv.innerHTML = `<p>❌ "${categoryName}" 자료를 찾을 수 없습니다.</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">❌ 오류 발생: ${error.message}</p>`;
+            }
+        }
+
+        // 4. 특정 회차만 가져오기
+        async function getSpecificExam(examNumber) {
+            const resultDiv = document.getElementById('result3');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '로딩 중...';
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                let html = `<h3>📄 ${examNumber} 자료</h3><ul class="file-list">`;
+                let found = false;
+                
+                Object.entries(data).forEach(([category, subCategories]) => {
+                    Object.values(subCategories).forEach(exams => {
+                        exams.forEach(exam => {
+                            if (exam.exam === examNumber) {
+                                found = true;
+                                exam.files.forEach(file => {
+                                    const fullUrl = BASE_URL + file.path.split('/').map(encodeURIComponent).join('/');
+                                    html += `<li><a href="${fullUrl}" target="_blank">${file.name}</a> (${file.type.toUpperCase()})</li>`;
+                                });
+                            }
+                        });
+                    });
+                });
+                
+                html += '</ul>';
+                if (!found) {
+                    html = `<p>❌ "${examNumber}" 자료를 찾을 수 없습니다.</p>`;
+                }
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">❌ 오류 발생: ${error.message}</p>`;
+            }
+        }
+
+        // 5. 모든 파일 목록 추출
+        async function extractAllFiles() {
+            const resultDiv = document.getElementById('result4');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '로딩 중...';
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                let allFiles = [];
+                Object.entries(data).forEach(([category, subCategories]) => {
+                    Object.values(subCategories).forEach(exams => {
+                        exams.forEach(exam => {
+                            exam.files.forEach(file => {
+                                allFiles.push({
+                                    category: category,
+                                    exam: exam.exam,
+                                    name: file.name,
+                                    type: file.type,
+                                    path: file.path,
+                                    url: BASE_URL + file.path.split('/').map(encodeURIComponent).join('/')
+                                });
+                            });
+                        });
+                    });
+                });
+                
+                let html = `<h3>📦 전체 파일 목록 (총 ${allFiles.length}개)</h3>`;
+                html += '<ul class="file-list">';
+                allFiles.forEach(file => {
+                    html += `<li><strong>[${file.category}]</strong> ${file.exam} - <a href="${file.url}" target="_blank">${file.name}</a></li>`;
+                });
+                html += '</ul>';
+                html += '<p>💡 JavaScript 배열로도 사용 가능합니다. 콘솔에서 확인하세요.</p>';
+                
+                resultDiv.innerHTML = html;
+                console.log('전체 파일 배열:', allFiles);
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color:red;">❌ 오류 발생: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
+
